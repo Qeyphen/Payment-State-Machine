@@ -3,6 +3,8 @@
 A library that models a payment attempt as an explicit state machine, with idempotent event handling and JSON snapshot recovery.
 
 ## Setup
+Requires Rust stable (edition 2024).
+  
 Clone the repository and build:
 
 ```bash
