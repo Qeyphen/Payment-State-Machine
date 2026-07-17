@@ -3,9 +3,11 @@
 A library that models a payment attempt as an explicit state machine, with idempotent event handling and JSON snapshot recovery.
 
 ## Setup
-Clone the project and build:
+Clone the repository and build:
 
 ```bash
+git clone https://github.com/Qeyphen/Payment-State-Machine.git
+cd Payment-State-Machine
 cargo build
 ```
 
