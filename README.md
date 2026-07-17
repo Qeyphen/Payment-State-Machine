@@ -73,10 +73,13 @@ makes recovery safe rather than just possible.
 
 ### Crates
 
-`serde` and `serde_json` for the snapshot, since the derive is exactly what the
-requirement asks for. `thiserror` for `TransitionError`, because this is a library and
-callers should be able to match on the error rather than only print it (`anyhow` would be
-the pick in a binary). Nothing else; the machine itself is plain std.
+`serde` and `serde_json` for the snapshot. The derive reaches private fields, so `state`
+and `applied_events` round-trip without my having to make them public.
+
+`thiserror` for `TransitionError`. It's a library, so callers should be able to match on
+the error, not just print it. `anyhow` would suit a binary.
+
+Nothing else. The machine itself is plain std.
 
 ### What I traded away for time
 
