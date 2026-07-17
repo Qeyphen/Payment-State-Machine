@@ -15,6 +15,8 @@ cargo build
 cargo test
 ```
 
+It's a library, so there's no binary to run.
+
 ## Design decisions, crate choices, tradeoffs
 
 ### How the machine works
@@ -78,9 +80,7 @@ the pick in a binary). Nothing else; the machine itself is plain std.
   Nothing here does arithmetic on it, so I left it alone.
 - `Fail` carries a `String` reason. A typed enum would be matchable and countable, but a
   string was quicker.
-- `next_state` lists the legal pairs and rejects the rest, instead of matching all 30
-  state/event combinations. Writing them all out would give a compile error if someone
-  adds a state and forgets a case.
+- `next_state` lists the legal pairs and rejects the rest, instead of matching all 30 state/event combinations. Writing them all out would give a compile error if someone adds a state and forgets a case.  Thirty arms is a lot of noise for six states, so I took the runtime check. If I miss a pair it rejects the event rather than letting a payment through.
 - A duplicate event returns the current state, not the state the first application produced. A per-event result cache would fix that, at the cost of doubling what I store.
 - The applied-ids set is never pruned. Fine for a short-lived attempt, not forever.
 - The snapshot has no schema version, so an old snapshot won't survive a struct change.
