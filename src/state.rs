@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 
-/// Lifecycle states. See the README for the transition table.
+/// Lifecycle states.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 pub enum State {
     Created,
